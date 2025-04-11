@@ -1,0 +1,68 @@
+/* page.module.css */
+.container {
+  position: relative;
+  min-height: 100vh;
+  /* iOS safe-area 고려 (상, 우, 하, 좌) */
+  padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 20px) env(safe-area-inset-bottom, 20px) env(safe-area-inset-left, 20px);
+  overflow: hidden;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* public 폴더 내 background.png 사용 */
+  background: url('/background.png') no-repeat center center;
+  background-size: cover;
+  filter: blur(12px); /* 강한 가우시안 블러 */
+  z-index: -1;
+}
+
+/* 팝업 스타일: 귀여운 오렌지 계열 (연한 색상 사용) */
+.popup {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FFB07C;  /* FD7731보다 연한 light orange */
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+}
+
+/* 팝업 내용 및 애니메이션 */
+.popupContent {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 20px;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.fadeOut {
+  opacity: 0;
+}
+
+.fadeIn {
+  opacity: 1;
+}
+
+/* [다음] 버튼 스타일: 연한 오렌지 변형 색상 사용 */
+.nextButton {
+  background-color: #FFD2A6; /* light variation of orange */
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nextButton:hover {
+  background-color: #FFC68E;
+}
