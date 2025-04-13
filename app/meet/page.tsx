@@ -16,7 +16,7 @@ const buttonArray = [
   "페이지 이동"
 ];
 
-const Page = () => {
+const meetPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [typedText, setTypedText] = useState('');
   const [isFading, setIsFading] = useState(false);
@@ -80,4 +80,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default meetPage;

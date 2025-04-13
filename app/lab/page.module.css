@@ -1,0 +1,152 @@
+@font-face {
+  font-family: 'CookieRun-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 기존: 페이지의 기본 container */
+.container {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* 기존: 배경 이미지 */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/lab.png') no-repeat center center;
+  background-size: cover;
+  filter: blur(2) brightness(1.05);
+  transform: scale(1.1);
+  z-index: -1;
+}
+
+/* ----------------------------------------------- */
+/* 추가: 상단 UI 버튼 영역 */
+.topBar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 0rem;
+  z-index: 1;
+  
+}
+
+/* 추가: 개별 UI 버튼 스타일 */
+.uiButton {
+  background: linear-gradient(135deg, #ff9328 0%, #ffffff 100%);
+  width: 120px;
+
+  color: #680000;
+
+  border: 2px solid #ff7b00;
+  border-radius: 16px;
+
+  /* 여유로운 패딩과 폰트 설정 */
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-family: 'CookieRun-Regular';
+  font-weight: 600;
+  cursor: pointer;
+
+  /* 미묘한 그림자(바깥 + 안쪽)로 가벼운 입체감 */
+  box-shadow: 
+    2px 2px 8px rgba(0, 0, 0, 0.1), /* 바깥 그림자 */
+    inset 0 0 0.5px rgba(255, 255, 255, 0.2); /* 안쪽 하이라이트 */
+
+  /* 눌림/확대 효과 전환 */
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* 터치/클릭 시 약간 눌리는 느낌 */
+.uiButton:active {
+  transform: scale(0.96);
+  box-shadow:
+    1px 1px 5px rgba(0, 0, 0, 0.2),
+    inset 0 0 0.5px rgba(255, 255, 255, 0.4);
+}
+
+
+
+/* 추가: 중앙 Lottie 애니메이션 영역 */
+.centerArea {
+  position: absolute;
+  top: 80px;      /* 상단 UI 영역 아래 */
+  bottom: 80px;   /* 하단 Timer 버튼 위 */
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+}
+
+/* 추가: Lottie 애니메이션용 컨테이너 (클릭 가능) */
+.lottieContainer {
+  width: 300px;
+  height: 300px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* 추가: 하단 Timer 버튼 영역 */
+.bottomBar {
+  position: absolute;
+  bottom: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.roundTimerButton {
+  width: 80%;
+  height: 50px;
+  border-radius: 12px; /* 약간 둥글게 변경 */
+  color: white; /* 상단 UI와 동일한 텍스트 색상 */
+  border: 2px solid;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'CookieRun-Regular';
+  font-weight: 400;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1),
+              inset 0 0 0.5px rgba(255, 255, 255, 0.2);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.roundTimerButton:active {
+  transform: scale(0.96);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2),
+              inset 0 0 0.5px rgba(255, 255, 255, 0.3);
+}
+
+/* 대기 상태: 기존 스타일 유지 */
+.waiting {
+  background: linear-gradient(135deg, #7b7b7b 0%, #4f4f4f 100%);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* 실행 상태: 상단 UI와 통일되는 파스텔톤 느낌 적용 */
+.running {
+  background: linear-gradient(135deg, #ff9328 0%, #ffffff 100%);
+  color: #680000;
+  border: 2px solid #ff7b00;
+  font-weight: 600;
+}
