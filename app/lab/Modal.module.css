@@ -1,0 +1,105 @@
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease-in-out;
+}
+  
+.modalBox {
+    background: linear-gradient(135deg, #ffffff 0%, #fff4e8 100%);
+    border: 2px solid #ffcc99;
+    border-radius: 6px;
+    padding: 24px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    animation: scaleIn 0.2s ease-in-out;
+    font-family: 'CookieRun-Regular';
+    position: relative;
+}
+
+/* 애니메이션 keyframes */
+@keyframes scaleIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+@keyframes scaleOut {
+    from { transform: scale(1); opacity: 1; }
+    to   { transform: scale(0.8); opacity: 0; }
+}
+  @keyframes fadeIn {
+    from { background-color: rgba(0, 0, 0, 0.0); }
+    to   { background-color: rgba(0, 0, 0, 0.4); }
+}
+@keyframes fadeOut {
+    from { background-color: rgba(0, 0, 0, 0.4); }
+    to   { background-color: rgba(0, 0, 0, 0.0); }
+}
+  
+/* 닫힐 때 트리거 */
+.scaleOut {
+    animation: scaleOut 0.2s ease-in-out forwards;
+}
+.fadeOut {
+    animation: fadeOut 0.2s ease-in-out forwards;
+}
+  
+.modalCloseButton {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 28px;
+    height: 28px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff7b00;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: color 0.2s ease;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 1rem;
+    margin-top: 24px;
+    justify-content: center;
+}
+
+.modalActionButton {
+    flex: 1;
+    padding: 8px 0;
+    border-radius: 12px;
+    font-size: 1.15rem;
+    font-family: 'CookieRun-Regular';
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modalYes {
+    background: linear-gradient(135deg, #ffa03e 0%, #ffd9b0 100%);
+    color: #681c00;
+}
+
+.modalNo {
+    background: linear-gradient(135deg, #dddddd 0%, #ffffff 100%);
+    color: #333;
+}
+    
+.modalActionButton:active {
+    transform: scale(0.95);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}  

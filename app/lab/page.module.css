@@ -9,8 +9,7 @@
 /* 기존: 페이지의 기본 container */
 .container {
   position: relative;
-  min-height: 100vh;
-  overflow: hidden;
+  min-height: 100dvh;
 }
 
 /* 기존: 배경 이미지 */
@@ -44,7 +43,8 @@
 /* 추가: 개별 UI 버튼 스타일 */
 .uiButton {
   background: linear-gradient(135deg, #ff9328 0%, #ffffff 100%);
-  width: 120px;
+  /* width: 120px; */
+  flex: 1;
 
   color: #680000;
 
@@ -88,18 +88,22 @@
   justify-content: center;
   align-items: center;
   z-index: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none; /* (선택) 길게 눌렀을 때 메뉴 방지 */
+  user-select: none;           /* (선택) 텍스트 선택 방지 */
 }
 
 /* 추가: Lottie 애니메이션용 컨테이너 (클릭 가능) */
 .lottieContainer {
   width: 300px;
   height: 300px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.578);
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  border: 2.5px solid #ff7b00;
 }
 
 /* 추가: 하단 Timer 버튼 영역 */
@@ -114,7 +118,7 @@
 }
 
 .roundTimerButton {
-  width: 80%;
+  width: 300px;
   height: 50px;
   border-radius: 12px; /* 약간 둥글게 변경 */
   color: white; /* 상단 UI와 동일한 텍스트 색상 */

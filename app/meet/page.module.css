@@ -8,8 +8,6 @@
 /* 팝업 컨테이너 (기본 container는 기존 설정 유지) */
 .container {
   position: relative;
-  min-height: 100vh;
-  overflow: hidden;
 }
 
 .background {
