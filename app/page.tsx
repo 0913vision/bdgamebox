@@ -6,6 +6,7 @@ export default async function HomePage() {
   const db = await dbPromise;
   const state = await db.collection("state").findOne({});
 
+  console.log(state?.level);
   if (!state || state.level === 0) {
     redirect("/meet");
   }
