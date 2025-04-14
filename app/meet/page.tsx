@@ -6,15 +6,15 @@ import styles from './page.module.css';
 import { useLevelStore } from "@/stores/useLevelStore";
 
 const storyArray = [
-  "첫 번째 스토리 내용입니다.",
-  "두 번째 스토리 내용입니다.",
-  "세 번째 스토리 내용입니다."
+  "안녕하세요?\n여기는 미지 생물 연구소입니다.\n우리는 현재 미지의 생물 \"부아뜨\"를 연구하고 있습니다.",
+  "부아뜨는 아주 특이한 생물이지만, 우리 연구실에서는 자금 문제로 현재 인력 충원에 어려움을 겪고 있습니다.\n그래서 부아뜨를 연구하기 위해서는 당신의 도움이 필요합니다.",
+  "저희 연구실로 안내해드리겠습니다.\n이 연구실에서 주기적으로 실험하며 부아뜨를 성장시켜주세요.\n건투를 빕니다!"
 ];
 
 const buttonArray = [
-  "다음 스토리",
-  "계속",
-  "페이지 이동"
+  "네, 그런데요?",
+  "네, 알겠습니다.",
+  "연구실로 이동하기"
 ];
 
 const meetPage = () => {
@@ -73,13 +73,24 @@ const meetPage = () => {
     }
   };
 
+  const formatText = (text: string) => {
+    return text
+      .split('\n')                   // 줄바꿈 기준으로 나눔
+      .map((line, index) => (
+        <React.Fragment key={index}>
+          {line}
+          <br />
+        </React.Fragment>
+      ));
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.background}/>
       <div className={styles.popup}>
-        <div className={`${styles.popupContent} ${isFading ? styles.fadeOut : ''}`}>
-          {typedText}
-        </div>
+      <div className={`${styles.popupContent} ${isFading ? styles.fadeOut : ''}`}>
+        {formatText(typedText)}
+      </div>
         <button className={styles.nextButton} onClick={handleNext}>
           <div className={`${styles.nextButtonContent} ${isFading ? styles.fadeOut : ''}`}>
             {buttonArray[currentIndex]}

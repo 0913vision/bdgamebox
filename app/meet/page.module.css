@@ -50,10 +50,12 @@
 /* 팝업 내용: 타이핑 효과와 fadeOut 효과 */
 .popupContent {
   flex: 1;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-bottom: 20px;
   opacity: 1;
   transition: opacity 0.5s ease;
+  line-height: 1.5rem; /* 줄간격 */
+  letter-spacing: 0.05em; /* 자간 */
 }
 
 /* Fade Out 효과 */
