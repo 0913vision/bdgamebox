@@ -13,7 +13,12 @@ const ConfirmModal: React.FC = () => {
   const router = useRouter();
 
   const handleConfirm = async () => {
-    const content = logMessages[level ?? 1] ?? "부아뜨가 성장했습니다.";
+    const currentLevel = Number(level);
+    if (isNaN(currentLevel)) {
+      console.error("Invalid level: must be a number");
+      return;
+    }
+    const content = logMessages[currentLevel] ?? "부아뜨가 성장했습니다.";
 
     // 1. 로그 삽입
     await fetch("/api/logs", {
@@ -26,7 +31,7 @@ const ConfirmModal: React.FC = () => {
     await fetch("/api/state", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ level: level + 1 }),
+      body: JSON.stringify({ level: currentLevel + 1 }),
     });
 
     // 3. 퀘스트 초기화
