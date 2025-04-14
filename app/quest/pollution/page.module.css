@@ -111,3 +111,10 @@
   color: #666;
   cursor: not-allowed;
 }
+
+.switchText {
+  font-size: 0.9rem;
+  color: #444;
+  user-select: none;
+  margin: -0.5rem 0rem;
+}

@@ -145,7 +145,9 @@ export default function PollutionQuestPage() {
               REMOVED: {removedCount} / 5
             </div>
           </div>
-
+          <div className={styles.switchText}>
+            모니터를 터치하여 오염물질을 제거
+          </div>
           <button
             className={styles.submitButton}
             disabled={removedCount < 5 || submitting}

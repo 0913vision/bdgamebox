@@ -107,7 +107,7 @@ const FeedQuestPage = () => {
       <div className={styles.gamePanel}>
         <div className={styles.topSection}>
           <div className={styles.monitorBox}>
-            <div className={styles.percent}>{percent}<span>%</span></div>
+            <div className={styles.percent}><span className={styles.spanKorean}>반응도</span>{percent}<span>%</span></div>
             <div className={styles.visualBars}>
               {topBars.map((h, i) => (
                 <div key={i} className={styles.visualBar} style={{ height: `${h}%` }} />
@@ -120,7 +120,7 @@ const FeedQuestPage = () => {
           {values.map((val, index) => (
             <div key={index} className={styles.controlColumn}>
               <div className={styles.labelText}>
-                {["A", "B", "C"][index]}
+                {["Si", "Cu", "Li"][index]}
               </div>
               <div className={styles.fillBarContainer}>
                 <div className={styles.fillBar} style={{ height: `${val}%` }} />
@@ -150,6 +150,9 @@ const FeedQuestPage = () => {
               </button>
             </div>
           ))}
+        </div>
+        <div className={styles.switchText}>
+          물질 농도를 조절하여 반응성 최대화
         </div>
 
         <button

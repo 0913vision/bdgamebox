@@ -43,8 +43,8 @@
   font-weight: 400;
   display: flex;
   justify-content: center;
-  align-items: left;
   flex-direction: column;
+  align-items: flex-start;
 }
 
 /* 팝업 내용: 타이핑 효과와 fadeOut 효과 */
@@ -56,6 +56,15 @@
   transition: opacity 0.5s ease;
   line-height: 1.5rem; /* 줄간격 */
   letter-spacing: 0.05em; /* 자간 */
+  text-align: left !important;
+  white-space: pre-wrap;
+}
+
+.popupContent div {
+  word-break: keep-all; /* 한글 단어 단위로 줄바꿈 */
+  white-space: pre-wrap; /* 줄바꿈 유지 + 공백 처리 */
+  line-height: 1.5rem;
+  letter-spacing: 0.05em;
 }
 
 /* Fade Out 효과 */

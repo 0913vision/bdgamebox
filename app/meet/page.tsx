@@ -74,14 +74,11 @@ const meetPage = () => {
   };
 
   const formatText = (text: string) => {
-    return text
-      .split('\n')                   // 줄바꿈 기준으로 나눔
-      .map((line, index) => (
-        <React.Fragment key={index}>
-          {line}
-          <br />
-        </React.Fragment>
-      ));
+    return text.split('\n').map((line, index) => (
+      <div key={index}>
+        {line}
+      </div>
+    ));
   };
 
   return (
