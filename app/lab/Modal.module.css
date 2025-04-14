@@ -21,6 +21,7 @@
     animation: scaleIn 0.2s ease-in-out;
     font-family: 'CookieRun-Regular';
     position: relative;
+    word-break: keep-all; /* 단어 줄바꿈 방지 */
 }
 
 /* 애니메이션 keyframes */

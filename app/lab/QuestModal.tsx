@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ModalBase from "./ModalBase";
 import { useModalStore } from "@/stores/useModalStore";
 import { useQuestStore, Quest } from "@/stores/useQuestStore";
+import { useLevelStore } from "@/stores/useLevelStore";
 import styles from "./Modal.module.css";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
@@ -11,13 +12,28 @@ const questRoutes: Record<string, string> = {
   feed: "/quest/feed",
   turbidity: "/quest/turbidity",
   pollution: "/quest/pollution",
+  analysis: "/quest/analysis",
+  xray: "/quest/xray",
+  email: "/quest/email",
+  culture: "/quest/culture",
 };
 
-const defaultQuests = [
-  { slug: "feed", id: "영양 보충하기", cooldown: 5400, latestTimestamp: new Date(0), count: 0, goal: 2, icon: "🧪" },
-  { slug: "turbidity", id: "탁도 측정하기", cooldown: 3600, latestTimestamp: new Date(0), count: 0, goal: 3, icon: "🔬" },
-  { slug: "pollution", id: "오염 제거하기", cooldown: 5400, latestTimestamp: new Date(0), count: 0, goal: 2, icon: "🚨" },
-];
+const PLACEHOLDER_QUEST: Quest = {
+  slug: "loading",
+  id: "로딩중...",
+  cooldown: 0,
+  latestTimestamp: new Date(0),
+  count: 0,
+  goal: 1,
+  icon: "⏳",
+};
+
+const levelQuestMap: Record<number, string[]> = {
+  1: ["feed", "turbidity", "pollution"],
+  2: ["feed", "analysis", "pollution"],
+  3: ["feed", "analysis", "xray"],
+  4: ["email", "culture", "pollution"],
+};
 
 const formatTimeLeft = (secondsLeft: number) => {
   const mins = Math.floor(secondsLeft / 60);
@@ -29,7 +45,14 @@ const QuestModal: React.FC = () => {
   const router = useRouter();
   const onRequestClose = useModalStore((s) => s.closeModal);
   const { quests, fetchQuests } = useQuestStore();
+  const level = useLevelStore((s) => s.level);
   const [now, setNow] = useState(Date.now());
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    clearQuestCookies();
+    fetchQuests().finally(() => setLoading(false));
+  }, [fetchQuests]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -38,22 +61,17 @@ const QuestModal: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  useEffect(() => {
-    clearQuestCookies();
-  }, []);
-
-  const mergedQuests = defaultQuests.map((q) => {
-    const found = quests.find((x) => x.id === q.id);
-    return found ? { ...q, ...found } : q;
+  const requiredSlugs: string[] = level !== null ? levelQuestMap[level] || [] : [];
+  const filteredQuests: Quest[] = requiredSlugs.map((slug: string) => {
+    const found = quests.find((q) => q.slug === slug);
+    return found ?? { ...PLACEHOLDER_QUEST, slug };
   });
 
   const handleQuestClick = (slug: string) => {
     const cookieName = `allow${slug.charAt(0).toUpperCase()}${slug.slice(1)}Access`;
-    console.log("cookieName", cookieName);
-    if (!questRoutes[slug]) return; // 경로가 없으면 아무것도 하지 않음
-    const route = questRoutes[slug];
+    if (!questRoutes[slug]) return;
     Cookies.set(cookieName, "true");
-    router.replace(route);
+    router.replace(questRoutes[slug]);
   };
 
   return (
@@ -64,26 +82,26 @@ const QuestModal: React.FC = () => {
             퀘스트 목록
           </div>
           <div className={styles.questModalGrid}>
-            {mergedQuests.map((quest) => {
-              const hasData = !!quest.latestTimestamp;
+            {filteredQuests.map((quest) => {
+              const hasData = quest.slug !== "loading";
               const last = new Date(quest.latestTimestamp);
               const elapsed = (now - last.getTime()) / 1000;
               const remaining = Math.max(0, Math.floor(quest.cooldown - elapsed));
-              const available = remaining <= 0 && quest.count < quest.goal;
+              const available = hasData && remaining <= 0 && quest.count < quest.goal;
               const isCompleted = quest.count >= quest.goal;
 
               return (
-                <div key={quest.id} className={styles.questBox}>
+                <div key={quest.slug} className={styles.questBox}>
                   <div className={styles.questHeader}>
                     <span className={styles.questIcon}>{quest.icon}</span>
                     <span className={styles.questTitle}>{quest.id}</span>
                   </div>
                   <div className={styles.questCount}>
-                    수행 횟수: {quest.count}/{quest.goal}
+                    수행 횟수: {hasData ? `${quest.count}/${quest.goal}` : "로딩중..."}
                   </div>
                   <button
                     className={styles.questButton}
-                    disabled={!hasData || !available}
+                    disabled={!available}
                     onClick={() => handleQuestClick(quest.slug)}
                   >
                     {!hasData

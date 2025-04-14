@@ -17,3 +17,9 @@ button {
   -webkit-touch-callout: none; /* (선택) 길게 눌렀을 때 메뉴 방지 */
   user-select: none;           /* (선택) 텍스트 선택 방지 */
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light;
+  }
+}

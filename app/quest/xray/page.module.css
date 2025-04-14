@@ -1,0 +1,285 @@
+/* page.module.css */
+.container {
+  position: relative;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.backButton {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #333;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  user-select: none;
+  font-family: 'CookieRun-Regular';
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.backButton:active {
+  transform: scale(0.96);
+  box-shadow:
+    1px 1px 5px rgba(0, 0, 0, 0.2),
+    inset 0 0 0.5px rgba(255, 255, 255, 0.4);
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/lab.png') no-repeat center center;
+  background-size: cover;
+  filter: blur(2px) brightness(1.05);
+  transform: scale(1.1);
+  z-index: -1;
+}
+
+.gamePanel {
+  width: 90dvw;
+  max-width: 600px;
+  background: white;
+  border-radius: 20px;
+  padding: 24px 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+/* 🔘 Switch */
+
+.switchContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-direction: column;
+}
+.switchBox {
+  width: 60px;
+  height: 120px;
+  border-radius: 12px;
+  /* border: 2px solid #555; */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  background: #d32f2f;
+  overflow: hidden;
+  /* transition: background 0.3s ease; */
+}
+
+.switchRow {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  /* margin-top: 32px; */
+}
+
+.switchColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.switchLabel {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.switchOn {
+  background: #4caf50;
+}
+
+.switchHandle {
+  position: absolute;
+  width: 100%;
+  height: 25%;
+  background: white;
+  border-radius: 8px;
+  transition: bottom 0.2s ease;
+  z-index: 1;
+}
+
+.switchFrontLine {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #333;
+  border-radius: 12px;
+  z-index: 2; /* 핸들보다 위 */
+  pointer-events: none;
+}
+
+.monitorBox {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: black;
+  border: 2px solid #ff9328;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.monitorContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.controlSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+}
+
+.controlColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.labelText {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #444;
+}
+
+.rangeInput {
+  width: 100%;
+  appearance: none;
+  height: 6px;
+  background: #ddd;
+  border-radius: 3px;
+  outline: none;
+}
+
+.rangeInput::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #ff9328;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+.downloadButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0);
+  border: none;
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  transition: background 0.2s ease;
+  color: white;
+}
+
+.holdButton {
+  position: relative;
+  width: 100%;
+  height: 48px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  background: #696969;
+  color: #333;
+  padding: 0;
+  touch-action: manipulation;
+  border: 0px solid transparent;
+}
+
+.holdButton:disabled {
+  background: #a3a3a3;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.holdFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0%;
+  background: #ff9328;
+  transition: width 0.05s linear;
+  z-index: 1;
+}
+
+.holdText {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  line-height: 48px;
+  color: white;
+}
+
+.title {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #333;
+  text-align: center;
+}
+
+.progressOuter {
+  width: 100%;
+  height: 24px;
+  background: #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid #bbb;
+  margin-top: 0px;
+}
+
+.progressInner {
+  height: 100%;
+  background: #4caf50;
+  transition: width 0.3s ease;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 12px 0;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  background: #ff9328;
+  color: white;
+  cursor: pointer;
+}

@@ -15,8 +15,9 @@ export async function POST() {
         const last = new Date(q.latestTimestamp);
         const elapsed = now.getTime() - last.getTime();
 
-        const updatedTime =
-          elapsed < cooldownMs * 0.5 ? tenMinAgo : new Date(0);
+        // const updatedTime =
+        //   elapsed < cooldownMs * 0.5 ? tenMinAgo : new Date(0);
+        const updatedTime = new Date(0);
           
         console.log("Quest ID:", q.id);
         return db.collection("quest").updateOne(

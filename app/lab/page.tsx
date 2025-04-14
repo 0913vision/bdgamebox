@@ -117,7 +117,6 @@ const LabPage: React.FC = () => {
       <div className={styles.centerArea}>
         <div
           className={styles.lottieContainer}
-          onClick={() => console.log("Lottie 애니메이션 클릭됨")}
         >
           {loading || typeof level !== "number" ? (
             <div className={styles.dotLoader}>
