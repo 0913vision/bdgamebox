@@ -2,6 +2,8 @@
 import { redirect } from "next/navigation";
 import { dbPromise } from "@/lib/mongo";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   const db = await dbPromise;
   const state = await db.collection("state").findOne({});
