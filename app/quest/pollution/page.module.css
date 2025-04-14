@@ -1,0 +1,113 @@
+.container {
+  position: relative;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/lab.png') no-repeat center center;
+  background-size: cover;
+  filter: blur(2px) brightness(1.05);
+  transform: scale(1.1);
+  z-index: -1;
+}
+
+.gamePanel {
+  width: 90dvw;
+  background: white;
+  border-radius: 20px;
+  padding: 24px 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.monitorTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  color: #ff9328;
+  letter-spacing: 0.08em;
+  margin-bottom: -8px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.monitorWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.monitor {
+  width: 100%;
+  height: 200px;
+  background: #222;
+  border-radius: 12px;
+  border: 3px solid #666;
+  overflow: hidden;
+  position: relative;
+}
+
+.pollutant {
+  position: absolute;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none; /* (선택) 길게 눌렀을 때 메뉴 방지 */
+  user-select: none;           /* (선택) 텍스트 선택 방지 */
+}
+.pollutant.removing {
+  opacity: 0;
+  transform: scale(0.5) rotate(0deg);
+  pointer-events: none; /* ❗ 클릭 방지 */
+}
+
+.monitorStatus {
+  position: absolute;
+  bottom: 6px;
+  right: 8px;
+  font-size: 0.8rem;
+  font-family: 'Share Tech Mono', monospace;
+  color: #00ffee;
+  background: #111;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #00ffee44;
+  box-shadow: 0 0 4px rgba(0, 255, 255, 0.2);
+  user-select: none;
+  -webkit-user-select: none;
+  z-index: 1;
+}
+
+
+
+.submitButton {
+  width: 100%;
+  padding: 12px 0;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  background: #ff9328;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submitButton:disabled {
+  background: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}

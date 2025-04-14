@@ -26,7 +26,7 @@ async function connectToDatabase(): Promise<Db> {
   await clientPromise;
   
   // 연결 성공 시, 사용할 데이터베이스를 선택합니다.
-  const db = client.db('yourDatabase');
+  const db = client.db('gameDatabase');
   cachedDb = db;
   return db;
 }

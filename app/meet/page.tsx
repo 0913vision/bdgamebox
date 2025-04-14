@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
+import { useLevelStore } from "@/stores/useLevelStore";
 
 const storyArray = [
   "첫 번째 스토리 내용입니다.",
@@ -51,15 +52,24 @@ const meetPage = () => {
     };
   }, [currentIndex]);
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (currentIndex < storyArray.length - 1) {
+      // 마지막 스토리 직전이면 → level = 1 POST
+      if (currentIndex === storyArray.length - 2) {
+        await fetch("/api/state", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ level: 1 }),
+        });
+      }
+  
       setIsFading(true);
       setTimeout(() => {
         setCurrentIndex(currentIndex + 1);
         setIsFading(false);
       }, 500);
     } else {
-      router.push('/nextPage');
+      router.replace("/lab");
     }
   };
 
