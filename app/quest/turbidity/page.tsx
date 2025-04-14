@@ -96,6 +96,9 @@ const TurbidityQuestPage = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.backButton} onClick={() => router.replace("/lab")}>
+        ← 실험실로 돌아가기
+      </div>
       <div className={styles.background} />
       <div className={styles.gamePanel}>
         {(phase === "collect" || phase === "switch") && (

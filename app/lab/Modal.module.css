@@ -111,6 +111,7 @@
     border-radius: 12px;
     max-height: 60vh; /* 화면 크기 제한 */
     overflow-y: auto;
+    user-select: none;;
 }
 
 .reportPaper h2 {
@@ -184,11 +185,13 @@ min-height: 200px;
     margin-top: -0.5rem;
     font-weight: bold;
     color: #5a2500;
+    user-select: none;
 }
 .questModalGrid {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     gap: 16px;
+    user-select: none;
   }
   
   .questBox {

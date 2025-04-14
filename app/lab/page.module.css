@@ -65,6 +65,8 @@
 
   /* 눌림/확대 효과 전환 */
   transition: transform 0.1s ease, box-shadow 0.1s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 /* 터치/클릭 시 약간 눌리는 느낌 */
