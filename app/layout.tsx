@@ -8,7 +8,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        <title>Birthday2025</title>
+        <title>Research Lab</title>
       </head>
       <body>{children}</body>
     </html>
