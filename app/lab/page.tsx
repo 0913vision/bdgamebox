@@ -43,11 +43,23 @@ const LabPage: React.FC = () => {
   useEffect(() => {
     if (typeof level === "number") {
       const requiredIds = levelQuestMap[level] || [];
-      const requiredQuests = quests.filter((q) => requiredIds.includes(q.id));
-      const allCompleted = requiredQuests.every((q) => q.count >= q.goal);
+  
+      const requiredQuests = quests.filter((q) => requiredIds.includes(q.slug));
+
+      if(requiredQuests.length === 0) {
+        setAllDailyQuestsCompleted(false);
+        return;
+      }
+  
+      const allCompleted = requiredQuests.every((q) => {
+        const passed = q.count >= q.goal;
+        return passed;
+      });
+  
       setAllDailyQuestsCompleted(allCompleted);
     }
   }, [level, quests]);
+  
 
   const isExperimentEnded = typeof level === "number" && level >= 4;
   const isUiDisabled = typeof level === "number" && level === 99;
