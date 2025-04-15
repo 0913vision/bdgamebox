@@ -16,12 +16,12 @@ const PERSON_LIST: Person[] = [
   { name: "Bob Smith", affiliation: "Cadeau Research Lab", email: "bob@cadeau.org", role: "Researcher" },
   { name: "Carol Lee", affiliation: "Cadeau Research Lab", email: "carol@cadeau.org", role: "Researcher" },
   { name: "David Kim", affiliation: "Cadeau Research Lab", email: "david@cadeau.org", role: "Researcher" },
-  { name: "Eve Torres", affiliation: "QuantumTech", email: "eve@quantum.tech", role: "Master" },
-  { name: "Frank Yang", affiliation: "QuantumTech", email: "frank@quantum.tech", role: "Engineer" },
-  { name: "Grace Liu", affiliation: "BioNova", email: "grace@bionova.bio", role: "Master" },
-  { name: "Henry Cho", affiliation: "BioNova", email: "henry@bionova.bio", role: "Analyst" },
-  { name: "Irene Park", affiliation: "XenoDynamics", email: "irene@xenodyne.com", role: "Intern" },
-  { name: "Jake Miller", affiliation: "XenoDynamics", email: "jake@xenodyne.com", role: "Intern" },
+  { name: "Eve Torres", affiliation: "Belkin", email: "eve@belkin.com", role: "Engineer" },
+  { name: "Frank Yang", affiliation: "ClockWise Inc.", email: "frank@clockwise.com", role: "Watch Designer" },
+  { name: "Grace Liu", affiliation: "DryTech Co.", email: "grace@drytech.co", role: "Product Manager" },
+  { name: "Henry Cho", affiliation: "Apple", email: "henry@apple.com", role: "Developer" },
+  { name: "Irene Park", affiliation: "Apple", email: "irene@apple.com", role: "Master" },
+  { name: "Jake Miller", affiliation: "Belkin", email: "jake@xenodyne.com", role: "Master" },
 ];
 
 const QUESTIONS: Record<number, { question: string; answerFn: (p: Person) => boolean }> = {
