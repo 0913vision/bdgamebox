@@ -245,7 +245,7 @@ const GeneAnalysisQuestPage = () => {
     try {
       await fetch("/api/quest", {
         method: "POST",
-        body: JSON.stringify({ slug: "gene" }),
+        body: JSON.stringify({ slug: "analysis" }),
         headers: { "Content-Type": "application/json" },
       });
       router.replace("/lab");
