@@ -17,7 +17,7 @@ const CultureQuestPage = () => {
   const holdRef = useRef<NodeJS.Timeout | null>(null);
   const [switchOn, setSwitchOn] = useState(false);
 
-  const elementSymbols = ["N", "Ca", "Fe"];
+  const elementSymbols = ["Li", "C", "Fe"];
   const colors = ["#1e90ff", "#4caf50", "#ff5722"];
 
   useEffect(() => {
@@ -131,6 +131,7 @@ const CultureQuestPage = () => {
               ))}
             </div>
             <div style={{ fontSize: "0.9rem", color: "#d32f2f" }}>
+              ※ 실린더를 꾹 눌러 용액을 채우기<br/>
               ※ 기구 노후로 용액이 조금씩 줄어드니 주의
             </div>
             <button
