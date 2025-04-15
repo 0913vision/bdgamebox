@@ -7,6 +7,7 @@ import styles from "./Modal.module.css";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { clearQuestCookies } from "@/lib/clearQuestCookies";
+import { levelQuestMap } from "./QuestMap";
 
 const questRoutes: Record<string, string> = {
   feed: "/quest/feed",
@@ -26,13 +27,6 @@ const PLACEHOLDER_QUEST: Quest = {
   count: 0,
   goal: 1,
   icon: "⏳",
-};
-
-const levelQuestMap: Record<number, string[]> = {
-  1: ["feed", "turbidity", "pollution"],
-  2: ["feed", "analysis", "pollution"],
-  3: ["feed", "analysis", "xray"],
-  4: ["email", "culture", "pollution"],
 };
 
 const formatTimeLeft = (secondsLeft: number) => {

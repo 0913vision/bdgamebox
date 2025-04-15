@@ -7,6 +7,7 @@ import { useModalStore } from "@/stores/useModalStore";
 import { useLevelStore } from "@/stores/useLevelStore";
 import { useLogStore } from "@/stores/useLogStore";
 import { clearQuestCookies } from "@/lib/clearQuestCookies";
+import { levelQuestMap } from "./QuestMap";
 
 /** Modals */
 import ConfirmModal from "./ConfirmModal";
@@ -29,7 +30,7 @@ const LabPage: React.FC = () => {
   const { level, loading } = useLevelStore();
   const [waitingTimer, setWaitingTimer] = useState(true);
   const [remainingSeconds, setRemainingSeconds] = useState<number | null>(null);
-  const allDailyQuestsCompleted = quests.every(q => q.count >= q.goal);
+  const [allDailyQuestsCompleted, setAllDailyQuestsCompleted] = useState<boolean>(false);
 
   useEffect(() => {
     useLevelStore.getState().fetchLevel();
@@ -38,6 +39,12 @@ const LabPage: React.FC = () => {
     useLogStore.getState().fetchLogs();
     useQuestStore.getState().fetchQuests();
   }, []);
+
+  useEffect(() => {
+    if (typeof level === "number") {
+      setAllDailyQuestsCompleted(quests.every(q => !(levelQuestMap[level].includes(q.id)) || q.count >= q.goal));
+    }
+  }, [level, quests]);
 
   const isExperimentEnded = typeof level === "number" && level >= 4;
   const isUiDisabled = typeof level === "number" && level === 99;
