@@ -130,7 +130,7 @@ const CultureQuestPage = () => {
                 </div>
               ))}
             </div>
-            <div style={{ fontSize: "0.9rem", color: "#888" }}>
+            <div style={{ fontSize: "0.9rem", color: "#d32f2f" }}>
               ※ 기구 노후로 용액이 조금씩 줄어드니 주의
             </div>
             <button
