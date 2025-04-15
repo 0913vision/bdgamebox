@@ -42,7 +42,10 @@ const LabPage: React.FC = () => {
 
   useEffect(() => {
     if (typeof level === "number") {
-      setAllDailyQuestsCompleted(quests.every(q => !(levelQuestMap[level].includes(q.id)) || q.count >= q.goal));
+      const requiredIds = levelQuestMap[level] || [];
+      const requiredQuests = quests.filter((q) => requiredIds.includes(q.id));
+      const allCompleted = requiredQuests.every((q) => q.count >= q.goal);
+      setAllDailyQuestsCompleted(allCompleted);
     }
   }, [level, quests]);
 
